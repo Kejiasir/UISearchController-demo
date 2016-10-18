@@ -13,6 +13,7 @@
 		A2A7813E1DB6598B00A2E775 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2A7813C1DB6598B00A2E775 /* Main.storyboard */; };
 		A2A781401DB6598B00A2E775 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2A7813F1DB6598B00A2E775 /* Assets.xcassets */; };
 		A2A781431DB6598B00A2E775 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2A781411DB6598B00A2E775 /* LaunchScreen.storyboard */; };
+		A2A7814C1DB66AFB00A2E775 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A7814B1DB66AFB00A2E775 /* TestViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,8 @@
 		A2A7813F1DB6598B00A2E775 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A2A781421DB6598B00A2E775 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A2A781441DB6598B00A2E775 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A2A7814A1DB66AFB00A2E775 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		A2A7814B1DB66AFB00A2E775 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +65,8 @@
 				A2A781371DB6598B00A2E775 /* AppDelegate.m */,
 				A2A781391DB6598B00A2E775 /* ViewController.h */,
 				A2A7813A1DB6598B00A2E775 /* ViewController.m */,
+				A2A7814A1DB66AFB00A2E775 /* TestViewController.h */,
+				A2A7814B1DB66AFB00A2E775 /* TestViewController.m */,
 				A2A7813C1DB6598B00A2E775 /* Main.storyboard */,
 				A2A7813F1DB6598B00A2E775 /* Assets.xcassets */,
 				A2A781411DB6598B00A2E775 /* LaunchScreen.storyboard */,
@@ -153,6 +158,7 @@
 			files = (
 				A2A7813B1DB6598B00A2E775 /* ViewController.m in Sources */,
 				A2A781381DB6598B00A2E775 /* AppDelegate.m in Sources */,
+				A2A7814C1DB66AFB00A2E775 /* TestViewController.m in Sources */,
 				A2A781351DB6598B00A2E775 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
