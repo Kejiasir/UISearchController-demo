@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  OneSearchViewController.h
 //  UISearchController-demo
 //
 //  Created by Arvin on 16/10/18.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface OneSearchViewController : UIViewController
 
 
 @end

@@ -11,7 +11,7 @@
 		A21D76891DB7D40200B07D7E /* TwoSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A21D76881DB7D40200B07D7E /* TwoSearchViewController.m */; };
 		A2A781351DB6598B00A2E775 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A781341DB6598B00A2E775 /* main.m */; };
 		A2A781381DB6598B00A2E775 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A781371DB6598B00A2E775 /* AppDelegate.m */; };
-		A2A7813B1DB6598B00A2E775 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A7813A1DB6598B00A2E775 /* ViewController.m */; };
+		A2A7813B1DB6598B00A2E775 /* OneSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A7813A1DB6598B00A2E775 /* OneSearchViewController.m */; };
 		A2A7813E1DB6598B00A2E775 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2A7813C1DB6598B00A2E775 /* Main.storyboard */; };
 		A2A781401DB6598B00A2E775 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2A7813F1DB6598B00A2E775 /* Assets.xcassets */; };
 		A2A781431DB6598B00A2E775 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2A781411DB6598B00A2E775 /* LaunchScreen.storyboard */; };
@@ -27,8 +27,8 @@
 		A2A781341DB6598B00A2E775 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A2A781361DB6598B00A2E775 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A2A781371DB6598B00A2E775 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		A2A781391DB6598B00A2E775 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		A2A7813A1DB6598B00A2E775 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		A2A781391DB6598B00A2E775 /* OneSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OneSearchViewController.h; sourceTree = "<group>"; };
+		A2A7813A1DB6598B00A2E775 /* OneSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OneSearchViewController.m; sourceTree = "<group>"; };
 		A2A7813D1DB6598B00A2E775 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A2A7813F1DB6598B00A2E775 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A2A781421DB6598B00A2E775 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -69,8 +69,8 @@
 			children = (
 				A2A781361DB6598B00A2E775 /* AppDelegate.h */,
 				A2A781371DB6598B00A2E775 /* AppDelegate.m */,
-				A2A781391DB6598B00A2E775 /* ViewController.h */,
-				A2A7813A1DB6598B00A2E775 /* ViewController.m */,
+				A2A781391DB6598B00A2E775 /* OneSearchViewController.h */,
+				A2A7813A1DB6598B00A2E775 /* OneSearchViewController.m */,
 				A21D76871DB7D40200B07D7E /* TwoSearchViewController.h */,
 				A21D76881DB7D40200B07D7E /* TwoSearchViewController.m */,
 				A21D76811DB75FD200B07D7E /* SearchResultViewController.h */,
@@ -166,7 +166,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A2A7813B1DB6598B00A2E775 /* ViewController.m in Sources */,
+				A2A7813B1DB6598B00A2E775 /* OneSearchViewController.m in Sources */,
 				A21D76891DB7D40200B07D7E /* TwoSearchViewController.m in Sources */,
 				A2A781381DB6598B00A2E775 /* AppDelegate.m in Sources */,
 				A21D76831DB75FD200B07D7E /* SearchResultViewController.m in Sources */,

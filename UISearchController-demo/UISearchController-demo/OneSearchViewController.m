@@ -1,34 +1,31 @@
 //
-//  ViewController.m
+//  OneSearchViewController.m
 //  UISearchController-demo
 //
 //  Created by Arvin on 16/10/18.
 //  Copyright © 2016年 Arvin. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "OneSearchViewController.h"
 #import "TwoSearchViewController.h"
 #import "SearchResultViewController.h"
 #import "TestViewController.h"
 
-@interface ViewController ()<UITableViewDelegate, UITableViewDataSource, UISearchControllerDelegate, UISearchResultsUpdating, SearchResultViewControllerDelegate>
+@interface OneSearchViewController ()<UITableViewDelegate, UITableViewDataSource, UISearchControllerDelegate, UISearchResultsUpdating, SearchResultViewControllerDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *sourceArray;
 @property (nonatomic, strong) NSMutableArray *searchResults;
 @property (nonatomic, strong) UISearchController *searchController;
 @end
 
-@implementation ViewController
+@implementation OneSearchViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"第一种搜索样式";
     // Do any additional setup after loading the view, typically from a nib.
-    UIBarButtonItem *rightBarBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(searchBtnClick:)];
-    self.navigationItem.rightBarButtonItem = rightBarBtn;
-    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(searchBtnClick:)];
     [self tableView];
-    
 //    [self.tableView setTableHeaderView:({
 //        UIView *headerView = [[UIView alloc] init];
 //        headerView.backgroundColor = [UIColor brownColor];
@@ -47,6 +44,7 @@
     _searchController.dimsBackgroundDuringPresentation = YES;
     _searchController.hidesNavigationBarDuringPresentation = NO;
     _searchController.searchBar.placeholder = @"大家都在搜";
+    [_searchController.searchBar sizeToFit];
     [self presentViewController:_searchController animated:YES completion:nil];
 }
 
@@ -101,6 +99,10 @@
 }
 
 #pragma mark - UITableViewDataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return /*self.searchController.active ? [self.searchResults count] : */[self.sourceArray count];
 }
@@ -136,7 +138,7 @@
         [self dismissViewControllerAnimated:YES completion:nil];
     }
     TestViewController *testVC = [[TestViewController alloc] init];
-    testVC.view.backgroundColor = [UIColor whiteColor];
+    testVC.view.backgroundColor = [UIColor yellowColor];
     [self.navigationController pushViewController:testVC animated:YES];
 }
 

@@ -20,19 +20,18 @@
 @implementation TwoSearchViewController
 
 - (void)viewDidLoad {
-    
     [super viewDidLoad];
-    
     self.title = @"第二种搜索样式";
     // Do any additional setup after loading the view.
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
-                                             initWithTitle:@"返回"
+                                             initWithTitle:@"goBack"
                                              style:UIBarButtonItemStylePlain
                                              target:self
                                              action:@selector(backBtnClick)];
     [self tableView];
     [self.tableView setTableHeaderView:({
         UISearchBar *searcgBar = self.searchController.searchBar;
+        [searcgBar sizeToFit];
         searcgBar;
     })];
 }
@@ -82,11 +81,9 @@
 
 - (void)updateFilteredContent:(NSString *)searchString {
     NSPredicate *preicate = [NSPredicate predicateWithFormat:@"SELF CONTAINS[cd] %@",searchString];
-    // 在查询结果之前先清空数组
     if (self.searchResults) {
         [self.searchResults removeAllObjects];
     }
-    // 生成查询结果数组
     NSArray *searchArr = [self.sourceArray filteredArrayUsingPredicate:preicate];
     self.searchResults = [NSMutableArray arrayWithArray:searchArr];
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -97,7 +94,7 @@
 #pragma mark - SearchResultViewControllerDelegate
 - (void)didSelectedIndexPath:(NSIndexPath *)indexPath {
     TestViewController *testVC = [[TestViewController alloc] init];
-    testVC.view.backgroundColor = [UIColor orangeColor];
+    testVC.view.backgroundColor = [UIColor greenColor];
     [self.navigationController pushViewController:testVC animated:YES];
 }
 
