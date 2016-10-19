@@ -22,13 +22,7 @@
     // self.clearsSelectionOnViewWillAppear = NO;
     self.tableView.rowHeight = 60;
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    [self.tableView setTableHeaderView:({
-        UISearchBar *searchBar = [[UISearchBar alloc] init];
-        searchBar.frame = (CGRect){0, 0, self.view.frame.size.width, 40};
-        searchBar.placeholder = @"search";
-        searchBar;
-    })];
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem; 
 }
 
 - (void)didReceiveMemoryWarning {
@@ -44,7 +38,6 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.searchResults.count;
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *ID = @"cell";

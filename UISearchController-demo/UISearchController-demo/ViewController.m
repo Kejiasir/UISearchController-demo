@@ -13,8 +13,8 @@
 @interface ViewController ()<UITableViewDelegate, UITableViewDataSource, UISearchControllerDelegate, UISearchResultsUpdating>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *sourceArray;
-@property (nonatomic, strong) UISearchController *searchController;
 @property (nonatomic, strong) NSMutableArray *searchResults;
+@property (nonatomic, strong) UISearchController *searchController;
 @end
 
 @implementation ViewController
@@ -28,10 +28,10 @@
     [self tableView];
     
     [self.tableView setTableHeaderView:({
-        UISearchBar *searchBar = [[UISearchBar alloc] init];
-        searchBar.frame = (CGRect){0, 0, self.view.frame.size.width, 40};
-        searchBar.placeholder = @"搜索";
-        searchBar;
+        UIView *headerView = [[UIView alloc] init];
+        headerView.backgroundColor = [UIColor brownColor];
+        headerView.frame = (CGRect){0, 0, self.view.frame.size.width, 44};
+        headerView;
     })];
 }
 
@@ -51,25 +51,9 @@
     [self updateFilteredContent:searchController.searchBar.text];
     if (searchController.searchResultsController) {
         SearchResultViewController *searchResultControl = (SearchResultViewController *)searchController.searchResultsController;
-        searchResultControl.searchResults = self.searchResults; 
+        searchResultControl.searchResults = self.searchResults;
         [searchResultControl.tableView reloadData];
     }
-}
-
-#pragma mark - UISearchControllerDelegate
-// 当发生自动显示或关闭时，将调用这些方法。 如果您自己显示或关闭搜索控制器，则不会调用它们。
-- (void)willPresentSearchController:(UISearchController *)searchController {
-    NSLog(@"1--%@--",searchController);
-}
-- (void)didPresentSearchController:(UISearchController *)searchController {
-    NSLog(@"2--%@--",searchController);
-}
-
-- (void)willDismissSearchController:(UISearchController *)searchController {
-    NSLog(@"3--%@--",searchController);
-}
-- (void)didDismissSearchController:(UISearchController *)searchController {
-    NSLog(@"4--%@--",searchController);
 }
 
 - (void)updateFilteredContent:(NSString *)searchString {
@@ -79,12 +63,10 @@
     // CONTAINS：检查某个字符串是否在另一个字符串内部。
     // [c]不区分大小写[d]不区分发音符号即没有重音符号[cd]既不区分大小写，也不区分发音符号。
     NSPredicate *preicate = [NSPredicate predicateWithFormat:@"SELF CONTAINS[cd] %@",searchString];
-    
-    // 在查询之前需要清理或者初始化数组
-    if (self.searchResults != nil) {
+    // 在查询结果之前先清空数组
+    if (self.searchResults) {
         [self.searchResults removeAllObjects];
     }
-
     // 生成查询结果数组
     NSArray *searchArr = [self.sourceArray filteredArrayUsingPredicate:preicate];
     self.searchResults = [NSMutableArray arrayWithArray:searchArr];
@@ -93,11 +75,27 @@
     });
 }
 
+
+#pragma mark - UISearchControllerDelegate
+// 当发生自动显示或关闭时，将调用这些方法。 如果您自己显示或关闭搜索控制器，则不会调用它们。
+- (void)willPresentSearchController:(UISearchController *)searchController {
+    NSLog(@"willPresentSearchController");
+}
+- (void)didPresentSearchController:(UISearchController *)searchController {
+    NSLog(@"didPresentSearchController");
+}
+
+- (void)willDismissSearchController:(UISearchController *)searchController {
+    NSLog(@"willDismissSearchController");
+}
+- (void)didDismissSearchController:(UISearchController *)searchController {
+    NSLog(@"didDismissSearchController");
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -113,7 +111,7 @@
 //    if (self.searchController.active) {
 //        cell.textLabel.text = self.searchResults[indexPath.row];
 //    } else {
-        cell.textLabel.text = self.sourceArray[indexPath.row];
+    cell.textLabel.text = self.sourceArray[indexPath.row];
 //    }
     return cell;
 }
@@ -124,7 +122,7 @@
 //        [self dismissViewControllerAnimated:YES completion:nil];
 //    }
     TestViewController *testVC = [[TestViewController alloc] init];
-    testVC.view.backgroundColor = [UIColor yellowColor];
+    testVC.view.backgroundColor = [UIColor whiteColor];
     [self.navigationController pushViewController:testVC animated:YES];
 }
 
