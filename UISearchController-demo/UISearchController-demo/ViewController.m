@@ -8,11 +8,13 @@
 
 #import "ViewController.h"
 #import "TestViewController.h"
+#import "SearchResultViewController.h"
 
-@interface ViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface ViewController ()<UITableViewDelegate, UITableViewDataSource, UISearchControllerDelegate, UISearchResultsUpdating>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *sourceArray;
 @property (nonatomic, strong) UISearchController *searchController;
+@property (nonatomic, strong) NSMutableArray *searchResults;
 @end
 
 @implementation ViewController
@@ -34,7 +36,61 @@
 }
 
 - (void)searchBtnClick:(UIBarButtonItem *)searchBtn {
-    NSLog(@"------");
+    // 如果 SearchResultsController 设置为nil表示使用当前控制器为result控制器
+    SearchResultViewController *searchResultController = [[SearchResultViewController alloc] init];
+    _searchController = [[UISearchController alloc] initWithSearchResultsController:searchResultController];
+    _searchController.delegate = self;
+    _searchController.searchResultsUpdater = self;
+    _searchController.dimsBackgroundDuringPresentation = YES;
+    _searchController.hidesNavigationBarDuringPresentation = NO;
+    [self presentViewController:_searchController animated:YES completion:nil];
+}
+
+#pragma mark - UISearchResultsUpdating
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
+    [self updateFilteredContent:searchController.searchBar.text];
+    if (searchController.searchResultsController) {
+        SearchResultViewController *searchResultControl = (SearchResultViewController *)searchController.searchResultsController;
+        searchResultControl.searchResults = self.searchResults; 
+        [searchResultControl.tableView reloadData];
+    }
+}
+
+#pragma mark - UISearchControllerDelegate
+// 当发生自动显示或关闭时，将调用这些方法。 如果您自己显示或关闭搜索控制器，则不会调用它们。
+- (void)willPresentSearchController:(UISearchController *)searchController {
+    NSLog(@"1--%@--",searchController);
+}
+- (void)didPresentSearchController:(UISearchController *)searchController {
+    NSLog(@"2--%@--",searchController);
+}
+
+- (void)willDismissSearchController:(UISearchController *)searchController {
+    NSLog(@"3--%@--",searchController);
+}
+- (void)didDismissSearchController:(UISearchController *)searchController {
+    NSLog(@"4--%@--",searchController);
+}
+
+- (void)updateFilteredContent:(NSString *)searchString {
+    // 谓词中SELF代表被查询的集合
+    // BEGINSWITH：检查某个字符串是否以另一个字符串开头。
+    // ENDSWITH：检查某个字符串是否以另一个字符串结尾。
+    // CONTAINS：检查某个字符串是否在另一个字符串内部。
+    // [c]不区分大小写[d]不区分发音符号即没有重音符号[cd]既不区分大小写，也不区分发音符号。
+    NSPredicate *preicate = [NSPredicate predicateWithFormat:@"SELF CONTAINS[cd] %@",searchString];
+    
+    // 在查询之前需要清理或者初始化数组
+    if (self.searchResults != nil) {
+        [self.searchResults removeAllObjects];
+    }
+
+    // 生成查询结果数组
+    NSArray *searchArr = [self.sourceArray filteredArrayUsingPredicate:preicate];
+    self.searchResults = [NSMutableArray arrayWithArray:searchArr];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
 }
 
 - (void)didReceiveMemoryWarning {
@@ -42,9 +98,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.sourceArray.count;
+    return /*self.searchController.active ? [self.searchResults count] : */[self.sourceArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -53,12 +110,19 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
     }
-    cell.textLabel.text = self.sourceArray[indexPath.row];
+//    if (self.searchController.active) {
+//        cell.textLabel.text = self.searchResults[indexPath.row];
+//    } else {
+        cell.textLabel.text = self.sourceArray[indexPath.row];
+//    }
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    if (self.searchController.active) {
+//        [self dismissViewControllerAnimated:YES completion:nil];
+//    }
     TestViewController *testVC = [[TestViewController alloc] init];
     testVC.view.backgroundColor = [UIColor yellowColor];
     [self.navigationController pushViewController:testVC animated:YES];

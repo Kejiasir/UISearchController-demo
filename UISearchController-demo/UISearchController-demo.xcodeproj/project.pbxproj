@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A21D76831DB75FD200B07D7E /* SearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A21D76821DB75FD200B07D7E /* SearchResultViewController.m */; };
 		A2A781351DB6598B00A2E775 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A781341DB6598B00A2E775 /* main.m */; };
 		A2A781381DB6598B00A2E775 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A781371DB6598B00A2E775 /* AppDelegate.m */; };
 		A2A7813B1DB6598B00A2E775 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A7813A1DB6598B00A2E775 /* ViewController.m */; };
@@ -17,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A21D76811DB75FD200B07D7E /* SearchResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultViewController.h; sourceTree = "<group>"; };
+		A21D76821DB75FD200B07D7E /* SearchResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultViewController.m; sourceTree = "<group>"; };
 		A2A781301DB6598B00A2E775 /* UISearchController-demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UISearchController-demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2A781341DB6598B00A2E775 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A2A781361DB6598B00A2E775 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -67,6 +70,8 @@
 				A2A7813A1DB6598B00A2E775 /* ViewController.m */,
 				A2A7814A1DB66AFB00A2E775 /* TestViewController.h */,
 				A2A7814B1DB66AFB00A2E775 /* TestViewController.m */,
+				A21D76811DB75FD200B07D7E /* SearchResultViewController.h */,
+				A21D76821DB75FD200B07D7E /* SearchResultViewController.m */,
 				A2A7813C1DB6598B00A2E775 /* Main.storyboard */,
 				A2A7813F1DB6598B00A2E775 /* Assets.xcassets */,
 				A2A781411DB6598B00A2E775 /* LaunchScreen.storyboard */,
@@ -158,6 +163,7 @@
 			files = (
 				A2A7813B1DB6598B00A2E775 /* ViewController.m in Sources */,
 				A2A781381DB6598B00A2E775 /* AppDelegate.m in Sources */,
+				A21D76831DB75FD200B07D7E /* SearchResultViewController.m in Sources */,
 				A2A7814C1DB66AFB00A2E775 /* TestViewController.m in Sources */,
 				A2A781351DB6598B00A2E775 /* main.m in Sources */,
 			);
@@ -316,6 +322,7 @@
 				A2A781491DB6598B00A2E775 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
