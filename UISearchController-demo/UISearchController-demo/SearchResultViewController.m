@@ -18,9 +18,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.tableView.rowHeight = 60;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
-    self.tableView.rowHeight = 60;
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem; 
 }
@@ -30,11 +30,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//    return 1;
-//}
-
+#pragma mark - UITableViewDataSource 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.searchResults.count;
 }
@@ -49,16 +45,18 @@
     return cell;
 }
 
+#pragma mark - UITableViewDelegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didSelectedIndexPath:)]) {
+        [self.delegate didSelectedIndexPath:indexPath];
+    }
+}
+
+#pragma mark -
 - (void)setSearchResults:(NSMutableArray *)searchResults {
     _searchResults = searchResults;
     //NSLog(@"%@",searchResults);
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES]; 
-    TestViewController *testVC = [[TestViewController alloc] init];
-    testVC.view.backgroundColor = [UIColor whiteColor];
-    [self.navigationController pushViewController:testVC animated:YES];
 }
 
 /*

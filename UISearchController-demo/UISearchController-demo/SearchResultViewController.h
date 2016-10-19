@@ -8,8 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@class SearchResultViewController;
+@protocol SearchResultViewControllerDelegate <NSObject>
+@optional
+- (void)didSelectedIndexPath:(NSIndexPath *)indexPath;
+@end
+
 @interface SearchResultViewController : UITableViewController
 
-@property (nonatomic, strong) NSMutableArray *searchResults; 
+@property (nonatomic, strong) NSMutableArray *searchResults;
 
+@property (nonatomic, weak) id<SearchResultViewControllerDelegate> delegate;
 @end

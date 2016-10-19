@@ -7,10 +7,11 @@
 //
 
 #import "ViewController.h"
-#import "TestViewController.h"
+#import "TwoSearchViewController.h"
 #import "SearchResultViewController.h"
+#import "TestViewController.h"
 
-@interface ViewController ()<UITableViewDelegate, UITableViewDataSource, UISearchControllerDelegate, UISearchResultsUpdating>
+@interface ViewController ()<UITableViewDelegate, UITableViewDataSource, UISearchControllerDelegate, UISearchResultsUpdating, SearchResultViewControllerDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *sourceArray;
 @property (nonatomic, strong) NSMutableArray *searchResults;
@@ -21,18 +22,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"第一种搜索样式";
     // Do any additional setup after loading the view, typically from a nib.
     UIBarButtonItem *rightBarBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(searchBtnClick:)];
     self.navigationItem.rightBarButtonItem = rightBarBtn;
     
     [self tableView];
     
-    [self.tableView setTableHeaderView:({
-        UIView *headerView = [[UIView alloc] init];
-        headerView.backgroundColor = [UIColor brownColor];
-        headerView.frame = (CGRect){0, 0, self.view.frame.size.width, 44};
-        headerView;
-    })];
+//    [self.tableView setTableHeaderView:({
+//        UIView *headerView = [[UIView alloc] init];
+//        headerView.backgroundColor = [UIColor brownColor];
+//        headerView.frame = (CGRect){0, 0, self.view.frame.size.width, 44};
+//        headerView;
+//    })];
 }
 
 - (void)searchBtnClick:(UIBarButtonItem *)searchBtn {
@@ -40,9 +42,11 @@
     SearchResultViewController *searchResultController = [[SearchResultViewController alloc] init];
     _searchController = [[UISearchController alloc] initWithSearchResultsController:searchResultController];
     _searchController.delegate = self;
+    searchResultController.delegate = self;
     _searchController.searchResultsUpdater = self;
     _searchController.dimsBackgroundDuringPresentation = YES;
     _searchController.hidesNavigationBarDuringPresentation = NO;
+    _searchController.searchBar.placeholder = @"大家都在搜";
     [self presentViewController:_searchController animated:YES completion:nil];
 }
 
@@ -74,7 +78,6 @@
         [self.tableView reloadData];
     });
 }
-
 
 #pragma mark - UISearchControllerDelegate
 // 当发生自动显示或关闭时，将调用这些方法。 如果您自己显示或关闭搜索控制器，则不会调用它们。
@@ -121,6 +124,17 @@
 //    if (self.searchController.active) {
 //        [self dismissViewControllerAnimated:YES completion:nil];
 //    }
+    TwoSearchViewController *twoSearchViewControl = [[TwoSearchViewController alloc] init];
+    twoSearchViewControl.view.backgroundColor = [UIColor whiteColor];
+    [self.navigationController pushViewController:twoSearchViewControl animated:YES];
+}
+
+
+#pragma mark - SearchResultViewControllerDelegate
+- (void)didSelectedIndexPath:(NSIndexPath *)indexPath {
+    if (self.searchController.active) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
     TestViewController *testVC = [[TestViewController alloc] init];
     testVC.view.backgroundColor = [UIColor whiteColor];
     [self.navigationController pushViewController:testVC animated:YES];
