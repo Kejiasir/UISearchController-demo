@@ -10,6 +10,7 @@
 #import "TwoSearchViewController.h"
 #import "SearchResultViewController.h"
 #import "TestViewController.h"
+#import "CustomSearchBarViewController.h"
 
 @interface OneSearchViewController ()<UITableViewDelegate, UITableViewDataSource, UISearchControllerDelegate, UISearchResultsUpdating, SearchResultViewControllerDelegate>
 @property (nonatomic, strong) UITableView *tableView;
@@ -116,7 +117,11 @@
 //    if (self.searchController.active) {
 //        cell.textLabel.text = self.searchResults[indexPath.row];
 //    } else {
-    cell.textLabel.text = self.sourceArray[indexPath.row];
+    if (indexPath.row == 0) {
+        cell.textLabel.text = @"CustomSearchBarViewController";
+    } else {
+        cell.textLabel.text = self.sourceArray[indexPath.row];
+    }
 //    }
     return cell;
 }
@@ -126,9 +131,14 @@
 //    if (self.searchController.active) {
 //        [self dismissViewControllerAnimated:YES completion:nil];
 //    }
-    TwoSearchViewController *twoSearchViewControl = [[TwoSearchViewController alloc] init];
-    twoSearchViewControl.view.backgroundColor = [UIColor whiteColor];
-    [self.navigationController pushViewController:twoSearchViewControl animated:YES];
+    if (indexPath.row == 0) {
+        CustomSearchBarViewController *customSearchBarVC = [[CustomSearchBarViewController alloc] init];
+        [self.navigationController pushViewController:customSearchBarVC animated:YES];
+    } else {
+        TwoSearchViewController *twoSearchViewControl = [[TwoSearchViewController alloc] init];
+        twoSearchViewControl.view.backgroundColor = [UIColor whiteColor];
+        [self.navigationController pushViewController:twoSearchViewControl animated:YES];
+    }
 }
 
 

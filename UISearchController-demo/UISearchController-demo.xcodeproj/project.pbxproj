@@ -16,6 +16,7 @@
 		A2A781401DB6598B00A2E775 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2A7813F1DB6598B00A2E775 /* Assets.xcassets */; };
 		A2A781431DB6598B00A2E775 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2A781411DB6598B00A2E775 /* LaunchScreen.storyboard */; };
 		A2A7814C1DB66AFB00A2E775 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A7814B1DB66AFB00A2E775 /* TestViewController.m */; };
+		A2AECF6C1DB9FE1600E9AA48 /* CustomSearchBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2AECF6B1DB9FE1600E9AA48 /* CustomSearchBarViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,8 @@
 		A2A781441DB6598B00A2E775 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A2A7814A1DB66AFB00A2E775 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		A2A7814B1DB66AFB00A2E775 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		A2AECF6A1DB9FE1600E9AA48 /* CustomSearchBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSearchBarViewController.h; sourceTree = "<group>"; };
+		A2AECF6B1DB9FE1600E9AA48 /* CustomSearchBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSearchBarViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +76,8 @@
 				A2A7813A1DB6598B00A2E775 /* OneSearchViewController.m */,
 				A21D76871DB7D40200B07D7E /* TwoSearchViewController.h */,
 				A21D76881DB7D40200B07D7E /* TwoSearchViewController.m */,
+				A2AECF6A1DB9FE1600E9AA48 /* CustomSearchBarViewController.h */,
+				A2AECF6B1DB9FE1600E9AA48 /* CustomSearchBarViewController.m */,
 				A21D76811DB75FD200B07D7E /* SearchResultViewController.h */,
 				A21D76821DB75FD200B07D7E /* SearchResultViewController.m */,
 				A2A7814A1DB66AFB00A2E775 /* TestViewController.h */,
@@ -166,6 +171,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2AECF6C1DB9FE1600E9AA48 /* CustomSearchBarViewController.m in Sources */,
 				A2A7813B1DB6598B00A2E775 /* OneSearchViewController.m in Sources */,
 				A21D76891DB7D40200B07D7E /* TwoSearchViewController.m in Sources */,
 				A2A781381DB6598B00A2E775 /* AppDelegate.m in Sources */,

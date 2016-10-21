@@ -24,13 +24,14 @@
     self.title = @"第二种搜索样式";
     // Do any additional setup after loading the view.
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
-                                             initWithTitle:@"goBack"
+                                             initWithTitle:@"Back"
                                              style:UIBarButtonItemStylePlain
                                              target:self
                                              action:@selector(backBtnClick)];
     [self tableView];
     [self.tableView setTableHeaderView:({
         UISearchBar *searcgBar = self.searchController.searchBar;
+        searcgBar.searchBarStyle = UISearchBarStyleDefault;
         [searcgBar sizeToFit];
         searcgBar;
     })];
