@@ -10,6 +10,5 @@
 
 @interface OneSearchViewController : UIViewController
 
-
 @end
 

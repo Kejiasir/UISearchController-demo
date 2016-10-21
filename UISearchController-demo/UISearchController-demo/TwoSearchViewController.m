@@ -31,7 +31,6 @@
     [self tableView];
     [self.tableView setTableHeaderView:({
         UISearchBar *searcgBar = self.searchController.searchBar;
-        searcgBar.searchBarStyle = UISearchBarStyleDefault;
         [searcgBar sizeToFit];
         searcgBar;
     })];
@@ -94,8 +93,7 @@
 
 #pragma mark - SearchResultViewControllerDelegate
 - (void)didSelectedIndexPath:(NSIndexPath *)indexPath {
-    TestViewController *testVC = [[TestViewController alloc] init];
-    testVC.view.backgroundColor = [UIColor greenColor];
+    TestViewController *testVC = [[TestViewController alloc] init]; 
     [self.navigationController pushViewController:testVC animated:YES];
 }
 

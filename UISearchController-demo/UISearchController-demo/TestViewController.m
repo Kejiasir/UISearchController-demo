@@ -8,6 +8,7 @@
 
 #import "TestViewController.h"
 #import "CustomSearchBarViewController.h"
+#import "SearchResultViewController.h"
 
 #define RGB(r,g,b) \
 [UIColor colorWithRed:(r)/256.f green:(g)/256.f blue:(b)/256.f alpha:1]
@@ -37,7 +38,7 @@
 
 @end
 
-@interface TestViewController ()
+@interface TestViewController ()<UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @end
 
@@ -46,17 +47,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    NSLog(@"%@",self.navigationController.viewControllers);
+    // NSLog(@"%@",self.navigationController.viewControllers);
 #ifdef __IPHONE_7_0
     self.automaticallyAdjustsScrollViewInsets = NO;
 #endif
-    
-//    [self.view addSubview:({
-//        UITableView *tableView = [[UITableView alloc] init];
-//        tableView.frame = CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height);
-//        tableView.backgroundColor = [UIColor redColor];
-//        tableView;
-//    })];
+    self.view.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:({
+        UITableView *tableView = [[UITableView alloc] init];
+        tableView.frame = CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-64);
+        //tableView.backgroundColor = [UIColor redColor];
+        tableView.delegate = self;
+        tableView.dataSource = self;
+        tableView.rowHeight = 60;
+        tableView;
+    })];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -77,10 +81,12 @@
             UIView *lineView = [[UIView alloc] init];
             UIImageView *searchImage = [[UIImageView alloc] init];
             [navigationView addSubview:({
+                textField.delegate = self;
                 textField.backgroundColor = RGB(234, 235, 237);
                 textField.frame = (CGRect){10, 27, navigationView.frame.size.width - 80, 28};
                 textField.placeholder = @"大家都在搜: 从你的全世界路过";
                 textField.font = [UIFont systemFontOfSize:14];
+                textField.clearButtonMode = UITextFieldViewModeWhileEditing;
                 textField.layer.cornerRadius = CGRectGetHeight(textField.frame)/5.f;
                 textField.layer.masksToBounds = YES;
                 [textField becomeFirstResponder];
@@ -131,6 +137,30 @@
     }
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 10;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *ID = @"cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+    }
+    cell.textLabel.text = [NSString stringWithFormat:@"--%zd--",indexPath.row];
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.view endEditing:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+}
+
 - (BOOL)isCustomSearchBarVC {
     NSArray *viewControllers = self.navigationController.viewControllers;
     for (UIViewController *vc in viewControllers) {
@@ -143,16 +173,20 @@
 
 - (void)cancelButtonClick:(UIButton *)cancelButton {
     [self.view endEditing:YES];
-    CAAnimation *cancelAnimation = [self transitionDuration:0.25 Type:kCATransitionFade subType:nil];
-    [self.navigationController.view.layer addAnimation:cancelAnimation forKey:@"cancel"];
+    CAAnimation *cancelAnimation = [self transitionDuration:.25f Type:kCATransitionFade subType:nil];
+    [self.navigationController.view.layer addAnimation:cancelAnimation forKey:nil];
     [self.navigationController popViewControllerAnimated:NO];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [self.view endEditing:YES];
+    return YES;
 }
 
 - (CAAnimation *)transitionDuration:(CFTimeInterval)duration Type:(NSString *)animation subType:(NSString *)subType {
     CATransition *transition = [CATransition animation];
     transition.duration = duration;
-    transition.timingFunction =
-    [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     //kCATransitionMoveIn, kCATransitionPush, kCATransitionReveal, kCATransitionFade
     transition.type = animation;
     //kCATransitionFromLeft, kCATransitionFromRight, kCATransitionFromTop, kCATransitionFromBottom

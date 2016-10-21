@@ -26,13 +26,8 @@
     self.title = @"第一种搜索样式";
     // Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(searchBtnClick:)];
+    
     [self tableView];
-//    [self.tableView setTableHeaderView:({
-//        UIView *headerView = [[UIView alloc] init];
-//        headerView.backgroundColor = [UIColor brownColor];
-//        headerView.frame = (CGRect){0, 0, self.view.frame.size.width, 44};
-//        headerView;
-//    })];
 }
 
 - (void)searchBtnClick:(UIBarButtonItem *)searchBtn {
@@ -147,10 +142,10 @@
     if (self.searchController.active) {
         [self dismissViewControllerAnimated:YES completion:nil];
     }
-    TestViewController *testVC = [[TestViewController alloc] init];
-    testVC.view.backgroundColor = [UIColor yellowColor];
+    TestViewController *testVC = [[TestViewController alloc] init]; 
     [self.navigationController pushViewController:testVC animated:YES];
 }
+
 
 #pragma mark -
 - (NSMutableArray *)sourceArray {

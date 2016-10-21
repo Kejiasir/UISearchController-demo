@@ -8,6 +8,7 @@
 
 #import "CustomSearchBarViewController.h"
 #import "TestViewController.h"
+#import "SearchResultViewController.h"
 
 #define RGB(r,g,b) \
 [UIColor colorWithRed:(r)/256.f green:(g)/256.f blue:(b)/256.f alpha:1]
@@ -22,6 +23,7 @@
     [super viewDidLoad];
     
     self.title = @"自定义搜索框";
+    self.tableView.rowHeight = 60;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
@@ -78,7 +80,6 @@
 
 - (void)searchButtonClick:(UIButton *)searchButton {
     TestViewController *testViewControl = [[TestViewController alloc] init];
-    testViewControl.view.backgroundColor = [UIColor whiteColor];
     CATransition *transition = [CATransition animation];
     transition.duration = .25f;
     transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault];
